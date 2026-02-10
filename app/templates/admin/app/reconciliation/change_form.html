@@ -1,0 +1,22 @@
+{% extends "admin/change_form.html" %}
+{% load i18n admin_urls %}
+
+{% block object-tools-items %}
+  {{ block.super }}
+  {% if original and original.pk %}
+    <li>
+      <a class="button"
+         href="{% url 'admin:app_reconciliation_reconcile' original.pk %}">
+        Сверить
+      </a>
+    </li>
+
+    {% if original.report_file %}
+      <li>
+        <a class="button" href="{{ original.report_file.url }}">
+          Скачать отчёт
+        </a>
+      </li>
+    {% endif %}
+  {% endif %}
+{% endblock %}
